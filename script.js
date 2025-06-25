@@ -1,28 +1,224 @@
+const currencyCountryMap = {
+  ADA: "Cardano (Cryptocurrency)",
+  AED: "United Arab Emirates",
+  AFN: "Afghanistan",
+  ALL: "Albania",
+  AMD: "Armenia",
+  ANG: "Netherlands Antilles",
+  AOA: "Angola",
+  ARB: "Arbitrum (Cryptocurrency)",
+  ARS: "Argentina",
+  AUD: "Australia",
+  AVAX: "Avalanche (Cryptocurrency)",
+  AWG: "Aruba",
+  AZN: "Azerbaijan",
+  BAM: "Bosnia and Herzegovina",
+  BBD: "Barbados",
+  BDT: "Bangladesh",
+  BGN: "Bulgaria",
+  BHD: "Bahrain",
+  BIF: "Burundi",
+  BMD: "Bermuda",
+  BNB: "BNB (Cryptocurrency)",
+  BND: "Brunei",
+  BOB: "Bolivia",
+  BRL: "Brazil",
+  BSD: "Bahamas",
+  BTC: "Bitcoin (Cryptocurrency)",
+  BTN: "Bhutan",
+  BWP: "Botswana",
+  BYN: "Belarus",
+  BYR: "Belarus (Old)",
+  BZD: "Belize",
+  CAD: "Canada",
+  CDF: "Democratic Republic of the Congo",
+  CHF: "Switzerland",
+  CLF: "Chile (UF)",
+  CLP: "Chile",
+  CNY: "China",
+  COP: "Colombia",
+  CRC: "Costa Rica",
+  CUC: "Cuba (Convertible Peso)",
+  CUP: "Cuba",
+  CVE: "Cape Verde",
+  CZK: "Czech Republic",
+  DAI: "DAI (Stablecoin)",
+  DJF: "Djibouti",
+  DKK: "Denmark",
+  DOP: "Dominican Republic",
+  DOT: "Polkadot (Cryptocurrency)",
+  DZD: "Algeria",
+  EGP: "Egypt",
+  ERN: "Eritrea",
+  ETB: "Ethiopia",
+  ETH: "Ethereum (Cryptocurrency)",
+  EUR: "European Union",
+  FJD: "Fiji",
+  FKP: "Falkland Islands",
+  GBP: "United Kingdom",
+  GEL: "Georgia",
+  GGP: "Guernsey",
+  GHS: "Ghana",
+  GIP: "Gibraltar",
+  GMD: "Gambia",
+  GNF: "Guinea",
+  GTQ: "Guatemala",
+  GYD: "Guyana",
+  HKD: "Hong Kong",
+  HNL: "Honduras",
+  HRK: "Croatia",
+  HTG: "Haiti",
+  HUF: "Hungary",
+  IDR: "Indonesia",
+  ILS: "Israel",
+  IMP: "Isle of Man",
+  INR: "India",
+  IQD: "Iraq",
+  IRR: "Iran",
+  ISK: "Iceland",
+  JEP: "Jersey",
+  JMD: "Jamaica",
+  JOD: "Jordan",
+  JPY: "Japan",
+  KES: "Kenya",
+  KGS: "Kyrgyzstan",
+  KHR: "Cambodia",
+  KMF: "Comoros",
+  KPW: "North Korea",
+  KRW: "South Korea",
+  KWD: "Kuwait",
+  KYD: "Cayman Islands",
+  KZT: "Kazakhstan",
+  LAK: "Laos",
+  LBP: "Lebanon",
+  LKR: "Sri Lanka",
+  LRD: "Liberia",
+  LSL: "Lesotho",
+  LTC: "Litecoin (Cryptocurrency)",
+  LTL: "Lithuania (Old)",
+  LVL: "Latvia (Old)",
+  LYD: "Libya",
+  MAD: "Morocco",
+  MATIC: "Polygon (Cryptocurrency)",
+  MDL: "Moldova",
+  MGA: "Madagascar",
+  MKD: "North Macedonia",
+  MMK: "Myanmar",
+  MNT: "Mongolia",
+  MOP: "Macau",
+  MRO: "Mauritania (Old)",
+  MRU: "Mauritania",
+  MUR: "Mauritius",
+  MVR: "Maldives",
+  MWK: "Malawi",
+  MXN: "Mexico",
+  MYR: "Malaysia",
+  MZN: "Mozambique",
+  NAD: "Namibia",
+  NGN: "Nigeria",
+  NIO: "Nicaragua",
+  NOK: "Norway",
+  NPR: "Nepal",
+  NZD: "New Zealand",
+  OMR: "Oman",
+  OP: "Optimism (Cryptocurrency)",
+  PAB: "Panama",
+  PEN: "Peru",
+  PGK: "Papua New Guinea",
+  PHP: "Philippines",
+  PKR: "Pakistan",
+  PLN: "Poland",
+  PYG: "Paraguay",
+  QAR: "Qatar",
+  RON: "Romania",
+  RSD: "Serbia",
+  RUB: "Russia",
+  RWF: "Rwanda",
+  SAR: "Saudi Arabia",
+  SBD: "Solomon Islands",
+  SCR: "Seychelles",
+  SDG: "Sudan",
+  SEK: "Sweden",
+  SGD: "Singapore",
+  SHP: "Saint Helena",
+  SLE: "Sierra Leone",
+  SLL: "Sierra Leone (Old)",
+  SOL: "Solana (Cryptocurrency)",
+  SOS: "Somalia",
+  SRD: "Suriname",
+  STD: "São Tomé and Príncipe (Old)",
+  STN: "São Tomé and Príncipe",
+  SVC: "El Salvador",
+  SYP: "Syria",
+  SZL: "Eswatini",
+  THB: "Thailand",
+  TJS: "Tajikistan",
+  TMT: "Turkmenistan",
+  TND: "Tunisia",
+  TOP: "Tonga",
+  TRY: "Turkey",
+  TTD: "Trinidad and Tobago",
+  TWD: "Taiwan",
+  TZS: "Tanzania",
+  UAH: "Ukraine",
+  UGX: "Uganda",
+  USD: "United States",
+  USDC: "USD Coin (Stablecoin)",
+  USDT: "Tether (Stablecoin)",
+  UYU: "Uruguay",
+  UZS: "Uzbekistan",
+  VEF: "Venezuela (Old)",
+  VES: "Venezuela",
+  VND: "Vietnam",
+  VUV: "Vanuatu",
+  WST: "Samoa",
+  XAF: "Central Africa (CFA Franc)",
+  XAG: "Silver (Commodity)",
+  XAU: "Gold (Commodity)",
+  XCD: "East Caribbean",
+  XDR: "IMF Special Drawing Rights",
+  XOF: "West Africa (CFA Franc)",
+  XPD: "Palladium (Commodity)",
+  XPF: "French Polynesia",
+  XPT: "Platinum (Commodity)",
+  XRP: "XRP (Cryptocurrency)",
+  YER: "Yemen",
+  ZAR: "South Africa",
+  ZMK: "Zambia (Old)",
+  ZMW: "Zambia",
+  ZWG: "Zimbabwe (Gold Coin)",
+  ZWL: "Zimbabwe"
+};
+
 const populate = async (value, currency) => {
   let myStr = "";
-  url =
-    "https://api.currencyapi.com/v3/latest?apikey=cur_live_gnn2N25qpVrNDmOss7xuBzIvYdiGYTXmFkFISiWe";
+  const url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_gnn2N25qpVrNDmOss7xuBzIvYdiGYTXmFkFISiWe&base_currency=${currency}`;
   let response = await fetch(url);
   let rJson = await response.json();
   document.querySelector(".output").style.display = "block";
 
   for (let key of Object.keys(rJson["data"])) {
-    myStr += ` <tr>
-                      <td>${key}</td>
-                      <td>${rJson["data"][key]["code"]}</td>
-                      <td>${rJson["data"][key]["value"] * value}</td>
-                  </tr> 
-              `;
+    const country = currencyCountryMap[key] || key;
+    const code = rJson["data"][key]["code"];
+    const convertedValue = (rJson["data"][key]["value"] * value).toFixed(2);
+    myStr += `
+      <tr>
+        <td>${country}</td>
+        <td>${code}</td>
+        <td>${convertedValue}</td>
+      </tr>`;
   }
+
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = myStr;
 };
+
 const btn = document.querySelector(".btn");
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-  const value = parseInt(
-    document.querySelector("input[name='quantity']").value
-  );
+  const value = parseFloat(document.querySelector("input[name='quantity']").value);
   const currency = document.querySelector("select[name='currency']").value;
-  populate(value, currency);
+  if (value && currency) {
+    populate(value, currency);
+  }
 });
