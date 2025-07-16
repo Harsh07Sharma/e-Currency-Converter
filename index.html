@@ -1,45 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-CurrencyConverter By Harsh</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,700;1,300&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   </head>
   <body>
+
     <nav>
       <div class="logo">MyCurrencyConverter</div>
-      <ul>
+
+      <!-- Hamburger menu for mobile -->
+      <div class="nav-toggle" id="nav-toggle">&#9776;</div>
+
+      <ul class="nav-links" id="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About Us</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
+
+      <!-- Theme toggle button -->
+      <button class="theme-toggle" id="theme-toggle">🌙</button>
     </nav>
+
     <div class="container">
       <h1><b>Choose a currency to convert</b></h1>
-      <form action="/action.php" method="get">
-        <label for="quantity">Choose a quantity: </label>
-        <input type="number" name="quantity" min="1" max="10" />
-        <label for="currency">Choose a currency: </label>
-        <select name="currency">
-          <option value="INR">INR(India)</option>
-          <option value="USD">USD(United States)</option>
-          <option value="ADA">ADA(Cryptocurrency)</option>
-          <option value="AZN">AZN(Azerbaijan)</option>
-          <option value="BAM">BAM(Bosnia and Herzegovina)</option>
-          <option value="BGN">BGN(Bulgaria)</option>
-          <option value="JPY">JPY(Japan)</option>
-          <option value="JOD">JOD(Jordan)</option>
-          <option value="IMP">IMP(Isle of Man)</option>
-          <option value="KZT">KZT(Kazakhstan)</option>
-          <option value="JMD">JMD(Jamaica)</option>
-          <option value="HUF">HUF(Hungary)</option>
-          <option value="GYD">GYD(Guyana)</option>
+      <form>
+        <label for="quantity">Choose a quantity:</label>
+        <input type="number" name="quantity" id="amount" min="1" max="10000" placeholder="Enter amount" />
+
+        <label for="currency">Choose a currency:</label>
+        <select name="currency" id="from">
+          <option value="INR">INR (India)</option>
+          <option value="USD">USD (United States)</option>
+          <option value="ADA">ADA (Cryptocurrency)</option>
+          <option value="AZN">AZN (Azerbaijan)</option>
+          <option value="BAM">BAM (Bosnia and Herzegovina)</option>
+          <option value="BGN">BGN (Bulgaria)</option>
+          <option value="JPY">JPY (Japan)</option>
+          <option value="JOD">JOD (Jordan)</option>
+          <option value="IMP">IMP (Isle of Man)</option>
+          <option value="KZT">KZT (Kazakhstan)</option>
+          <option value="JMD">JMD (Jamaica)</option>
+          <option value="HUF">HUF (Hungary)</option>
+          <option value="GYD">GYD (Guyana)</option>
         </select>
-        <button class="btn" type="submit">Submit</button>
+
+        <button class="btn" type="button">Submit</button>
       </form>
     </div>
-    <div class="output">
+
+    <!-- Converted output -->
+    <div class="output" id="output">
       <h2>Here is your converted values in different currencies</h2>
       <table>
         <thead>
@@ -52,6 +66,25 @@
         <tbody></tbody>
       </table>
     </div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
+    <script>
+      // Hamburger menu
+      const navToggle = document.getElementById("nav-toggle");
+      const navLinks = document.getElementById("nav-links");
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show-nav");
+      });
+
+      // Dark/light mode toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      const body = document.body;
+      themeToggle.addEventListener("click", () => {
+        const isDark = body.getAttribute("data-theme") === "dark";
+        body.setAttribute("data-theme", isDark ? "light" : "dark");
+        themeToggle.textContent = isDark ? "🌙" : "☀️";
+      });
+    </script>
   </body>
 </html>
