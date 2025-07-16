@@ -193,14 +193,15 @@ const currencyCountryMap = {
 const populate = async (value, currency) => {
   let myStr = "";
   const url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_gnn2N25qpVrNDmOss7xuBzIvYdiGYTXmFkFISiWe&base_currency=${currency}`;
-  let response = await fetch(url);
-  let rJson = await response.json();
+  const response = await fetch(url);
+  const rJson = await response.json();
+
   document.querySelector(".output").style.display = "block";
 
-  for (let key of Object.keys(rJson["data"])) {
+  for (let key in rJson.data) {
     const country = currencyCountryMap[key] || key;
-    const code = rJson["data"][key]["code"];
-    const convertedValue = (rJson["data"][key]["value"] * value).toFixed(2);
+    const code = rJson.data[key].code;
+    const convertedValue = (rJson.data[key].value * value).toFixed(2);
     myStr += `
       <tr>
         <td>${country}</td>
@@ -209,15 +210,14 @@ const populate = async (value, currency) => {
       </tr>`;
   }
 
-  const tableBody = document.querySelector("tbody");
-  tableBody.innerHTML = myStr;
+  document.querySelector("tbody").innerHTML = myStr;
 };
 
-const btn = document.querySelector(".btn");
-btn.addEventListener("click", (e) => {
+document.querySelector(".btn").addEventListener("click", (e) => {
   e.preventDefault();
-  const value = parseFloat(document.querySelector("input[name='quantity']").value);
-  const currency = document.querySelector("select[name='currency']").value;
+  const value = parseFloat(document.getElementById("amount").value);
+  const currency = document.getElementById("from").value;
+
   if (value && currency) {
     populate(value, currency);
   }
